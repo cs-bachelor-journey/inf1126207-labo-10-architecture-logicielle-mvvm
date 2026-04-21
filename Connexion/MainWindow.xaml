@@ -6,7 +6,22 @@
         xmlns:local="clr-namespace:Connexion"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+    
+    <StackPanel Margin="20">
+        <Label Content="Nom d'utilisateur"/>
+        <TextBox Text="{Binding Credentials.NomUtilisateur, UpdateSourceTrigger=PropertyChanged}"
+                 Margin="0,0,0,8"/>
+        <Label Content="Mot de passe"/>
+        <PasswordBox x:Name="PwdBox"
+                     PasswordChanged="PwdBox_Changed"
+                     Margin="0,0,0,8"/>
+        <CheckBox Content="Se souvenir de moi"
+                  IsChecked="{Binding Credentials.SeSouvenir}"
+                  Margin="0,0,0,12"/>
+        <Button Content="Se connecter"
+                Command="{Binding ConnexionCommand}"
+                Margin="0,0,0,10"/>
+        <TextBlock Text="{Binding Credentials.Message}"
+                   FontWeight="Bold"/>
+    </StackPanel>
 </Window>

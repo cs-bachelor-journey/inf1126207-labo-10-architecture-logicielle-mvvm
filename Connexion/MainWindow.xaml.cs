@@ -19,6 +19,10 @@ namespace Connexion
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new ViewModels.ConnexionViewModel();
         }
+
+        private void PwdBox_Changed(object s, RoutedEventArgs e)
+            => ((ViewModels.ConnexionViewModel)DataContext).Credentials.MotDePasse = PwdBox.Password;
     }
 }
