@@ -4,27 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ConvertisseurTemp"
-        xmlns:vm="clr-namespace:ConvertisseurTemp.ViewModels"
+        xmlns:models="clr-namespace:ConvertisseurTemp.Models" 
         mc:Ignorable="d"
         Title="Convertisseur de températures" Height="450" Width="800">
-    
-    <!-- Le DataContext est le pont View ↔ ViewModel -->
-    <Window.DataContext>
-        <vm:TemperatureViewModel/>
-    </Window.DataContext>
 
     <StackPanel Margin="20" >
 
         <!-- Saisie : TwoWay = la VM est notifiée à chaque frappe -->
-        <TextBox Text="{Binding Saisie, UpdateSourceTrigger=PropertyChanged}"
+        <TextBox Text="{Binding Temperature.Saisie, UpdateSourceTrigger=PropertyChanged}"
                  Margin="0,0,0,8"/>
 
         <!-- Message d'erreur (invisible si vide) -->
-        <TextBlock Text="{Binding Erreur}" Foreground="Red" Margin="0,0,0,8"/>
+        <TextBlock Text="{Binding Temperature.Erreur}" Foreground="Red" Margin="0,0,0,8"/>
 
         <!-- CheckBox liée à la propriété Arrondir du ViewModel -->
         <CheckBox Content="Arrondir le résultat"
-                  IsChecked="{Binding Arrondir}"
+                  IsChecked="{Binding Temperature.Arrondir}"
                   Margin="0,0,0,12"/>
 
         <StackPanel Orientation="Horizontal">
@@ -36,7 +31,7 @@
                     Command="{Binding VersFahrenheitCommand}"/>
         </StackPanel>
 
-        <TextBlock Text="{Binding Resultat}"
+        <TextBlock Text="{Binding Temperature.Resultat, UpdateSourceTrigger=PropertyChanged}"
                    FontSize="22" FontWeight="Bold"
                    Margin="0,16,0,0"/>
     </StackPanel>

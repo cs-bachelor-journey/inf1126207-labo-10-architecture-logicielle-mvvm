@@ -1,26 +1,26 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 
-namespace ConvertisseurTemp.ViewModels
+public class RelayCommand : ICommand
 {
-    public class RelayCommand: ICommand
+    // Predicate = fonction qui retourne bool (la condition d'activation)
+    private readonly Predicate<object> _canExecute;
+
+    // Action = ce qui s'exécute au clic (reçoit un paramètre object)
+    private readonly Action<object> _execute;
+
+    public RelayCommand(Predicate<object> canExecute, Action<object> execute)
     {
+        _canExecute = canExecute;
+        _execute = execute;
+    }
 
-        private readonly Action _execute;
-        private readonly Func<bool>? _canExecute;
+    public bool CanExecute(object parameter) => _canExecute(parameter);
+    public void Execute(object parameter) => _execute(parameter);
 
-        public RelayCommand(Action execute, Func<bool>? canExecute = null)
-        {
-            _execute = execute;
-            _canExecute = canExecute;
-        }
-
-        public bool CanExecute(object? p) => _canExecute?.Invoke() ?? true;
-        public void Execute(object? p) => _execute();
-
-        public event EventHandler? CanExecuteChanged
-        {
-            add => CommandManager.RequerySuggested += value;
-            remove => CommandManager.RequerySuggested -= value;
-        }
+    public event EventHandler CanExecuteChanged
+    {
+        add => CommandManager.RequerySuggested += value;
+        remove => CommandManager.RequerySuggested -= value;
     }
 }
