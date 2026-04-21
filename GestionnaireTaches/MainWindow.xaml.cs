@@ -19,6 +19,7 @@ namespace GestionnaireTaches
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new ViewModels.TachesViewModel();
         }
     }
 }

@@ -6,7 +6,21 @@
         xmlns:local="clr-namespace:GestionnaireTaches"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+    <StackPanel Margin="16">
+        <TextBox Text="{Binding NouveauTache.Nom, UpdateSourceTrigger=PropertyChanged}"
+                 Margin="0,0,0,6"/>
+        <TextBlock Text="{Binding NouveauTache.Erreur}"
+                   Foreground="Red" Margin="0,0,0,6"/>
+        <StackPanel Orientation="Vertical" Margin="0,0,0,20">
+            <RadioButton Content="🟢 Basse"  
+                         IsChecked="True" Margin="0,0,8,0"/>
+            <RadioButton Content="🟡 Moyenne"
+                         Margin="0,10,0,10"/>
+            <RadioButton Content="🔴 Haute"  />
+        </StackPanel>
+        <Button Content="Ajouter"
+                Command="{Binding AjouterTacheCommande}"
+                Margin="0,0,0,10"/>
+        <ListBox ItemsSource="{Binding Taches}" Height="200"/>
+    </StackPanel>
 </Window>
