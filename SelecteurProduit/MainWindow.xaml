@@ -6,7 +6,31 @@
         xmlns:local="clr-namespace:SelecteurProduit"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+    <StackPanel Margin="20">
+        <ComboBox ItemsSource="{Binding Produits}"
+                 SelectedItem="{Binding ProduitSelectionne, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  Margin="0,0,0,8"/>
+        <TextBlock Text="{Binding Produit.PrixAffiche, StringFormat='Prix : {0}'}"
+                   FontWeight="Bold" Margin="0,0,0,8"/>
+        <CheckBox Content="Activer la garantie"
+                  IsChecked="{Binding Produit.GarantieActive}"
+                  Margin="0,0,0,8"/>
+        <StackPanel Orientation="Horizontal"
+                    IsEnabled="{Binding Produit.GarantieActive}"
+                    Margin="0,0,0,10">
+            <RadioButton Content="1 an"
+                         GroupName="Garantie"
+                        Margin="0,0,8,0"/>
+            <RadioButton Content="2 ans"
+                         GroupName="Garantie"
+                          Margin="0,0,8,0"/>
+            <RadioButton Content="3 ans"
+                         GroupName="Garantie"
+                         />
+        </StackPanel>
+        <Button Content="Acheter"
+                Command="{Binding AcheterCommand}"
+                Margin="0,0,0,8"/>
+        <TextBlock Text="{Binding Produit.Message}"/>
+    </StackPanel>
 </Window>
