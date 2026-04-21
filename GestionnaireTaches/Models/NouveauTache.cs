@@ -49,8 +49,29 @@ namespace GestionnaireTaches.Models
                 {
                     _priorite = value;
                     OnPropertyChanged();
+                    OnPropertyChanged(nameof(IsPrioriteBasse));
+                    OnPropertyChanged(nameof(IsPrioriteMoyenne));
+                    OnPropertyChanged(nameof(IsPrioriteHaute));
                 }
             }
+        }
+
+        public bool IsPrioriteBasse
+        {
+            get { return Priorite == "Basse"; }
+            set { if (value) Priorite = "Basse"; }
+        }
+
+        public bool IsPrioriteMoyenne
+        {
+            get { return Priorite == "Moyenne"; }
+            set { if (value) Priorite = "Moyenne"; }
+        }
+
+        public bool IsPrioriteHaute
+        {
+            get { return Priorite == "Haute"; }
+            set { if (value) Priorite = "Haute"; }
         }
 
         public string Erreur

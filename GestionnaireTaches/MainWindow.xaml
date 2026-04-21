@@ -13,10 +13,16 @@
                    Foreground="Red" Margin="0,0,0,6"/>
         <StackPanel Orientation="Vertical" Margin="0,0,0,20">
             <RadioButton Content="🟢 Basse"  
-                         IsChecked="True" Margin="0,0,8,0"/>
+                         GroupName="Priorite"
+                         IsChecked="{Binding NouveauTache.IsPrioriteBasse, Mode=TwoWay}" 
+                         Margin="0,0,8,0"/>
             <RadioButton Content="🟡 Moyenne"
+                         GroupName="Priorite"
+                         IsChecked="{Binding NouveauTache.IsPrioriteMoyenne, Mode=TwoWay}"
                          Margin="0,10,0,10"/>
-            <RadioButton Content="🔴 Haute"  />
+            <RadioButton Content="🔴 Haute" 
+                         GroupName="Priorite"
+                         IsChecked="{Binding NouveauTache.IsPrioriteHaute, Mode=TwoWay}"/>
         </StackPanel>
         <Button Content="Ajouter"
                 Command="{Binding AjouterTacheCommande}"
